@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>guess a number game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./bootstrap-4.6.0-dist/css/bootstrap.min.css">
+</head>
+<style>
+    * {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-weight: 900;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+        outline: none;
+        border: none;
+    }
+    body{
+        
+    }
+</style>
+
+<body class="bg-dark">
+    <div class="container text-center">
+        <h3 class="bg-danger text-light py-2 border  m-5 rounded">Let's play a refreshing game</h3>
+        <h4 id="hidden" class="btn btn-outline-light ">
+            <i class="text-warning fa fa-star" aria-hidden="true"></i>
+            <i class="text-warning fa fa-star" aria-hidden="true"></i>&nbsp;
+            HERE IS YOUR HIDDEN NUMBER PRESENT&nbsp;
+            <i class="text-warning fa fa-star" aria-hidden="true"></i>
+            <i class="text-warning fa fa-star" aria-hidden="true"></i>
+        </h4><br>
+        <input id="number1" type="number" placeholder="Guess a number between 0 to 100" class="w-50 rounded mt-3  p-2 ">
+        <button class="btn btn-outline-warning mt-n1 " onclick="guess()">Lets guess the number &nbsp;<i
+                class="fa fa-lightbulb-o" aria-hidden="true" style="transform: scale(1.5);"></i>
+        </button>
+        <h6 id="try" class="text-primary  m-3">Reload the page to play again 😊</h6>
+        <h4 id="status" class="bg-light p-2 mx-5 my-5  border  border-warning rounded">Your Status</h4>
+        <h5 id="trials" class="bg-light p-2 mx-5 my-5 text-info border border-warning rounded">Number of trials</h5>
+    </div>
+    <div class="container mb-5 rounded"
+        style="background: url(earth.gif); background-size: cover; height: 20em;width: 30em;">
+
+    </div>
+</body>
+<script>
+    var i = 1, j = 0;
+    var a, b, c, d, e;
+    a = Math.floor(Math.random() * 100);
+    b = document.getElementById("number1").value;
+    document.getElementById("number1").style.color = "blue";
+    document.getElementById("try").style.visibility = "hidden";
+    function guess() {
+        b = document.getElementById("number1").value;
+        if (j == 0) {
+            if (b == "") {
+                document.getElementById("status").style.color = "#b78727";
+                document.getElementById("status").innerHTML = "plz! Guess a  number";
+
+            }
+            else if (b < a) {
+                document.getElementById("number1").style.color = "#dc143c";
+                document.getElementById("status").innerHTML = "Guess a higher number !";
+                document.getElementById("status").style.color = "#dc143c";
+                i++;
+            }
+            else if (b > a) {
+                document.getElementById("number1").style.color = "#dc143c";
+                document.getElementById("status").innerHTML = "Guess a smaller number !";
+                document.getElementById("number1").style.color = "#dc143c";
+                document.getElementById("status").style.color = "#dc143c";
+                i++;
+            }
+            else {
+                document.getElementById("number1").style.color = "green";
+                document.getElementById("hidden").innerHTML = "<i class='text-warning fa fa-star' aria-hidden='true'></i> <i class='text-warning fa fa-star' aria-hidden='true'></i> &nbsp;The number is  "
+                    + a +
+                    "&nbsp;<i class='text-warning fa fa-star' aria-hidden='true'></i> <i class='text-warning fa fa-star' aria-hidden='true'></i>";
+                document.getElementById("status").innerHTML = "Uhh huhh! 🥳You guess the correct number";
+                document.getElementById("status").style.color = "green";
+                document.getElementById("trials").innerHTML = "You guess the number after " + i + " trials";
+                j = j + 1;
+                document.getElementById("try").style.visibility="visible";
+
+            }
+
+        }
+        else {
+            document.getElementById("trials").innerHTML = "You guess the number after " + i + " trials";
+
+        }
+
+    }
+</script>
+
+</html>
